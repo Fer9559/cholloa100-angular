@@ -11,9 +11,9 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
 
-  private authService = Inject(AuthService);
+  private authService = inject(AuthService);
   private router = inject(Router);
-
+//prueba guardado
 
   public finishedAuthCheck = computed<boolean>( () => {
     console.log(this.authService.authStatus() )
@@ -38,7 +38,7 @@ export class AppComponent {
         return;
 
       case AuthStatus.notAuthenticated:
-        this.router.navigateByUrl('/auth/loguin');
+        this.router.navigateByUrl('/auth/login');
         return;
     }
 
