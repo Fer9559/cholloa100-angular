@@ -1,9 +1,14 @@
-import { User } from "./user.interface";
+
 
 
 export interface LoginResponse {
 
-  user: User;
+  id_user: string;
+  email: string;
+  password: string;
+  fullName: string;
   token: string;
 
 }
+
+
