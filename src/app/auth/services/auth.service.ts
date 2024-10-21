@@ -47,6 +47,28 @@ public authStatus = computed(() => this._authStatus());
   }
 
 
+  register( email: string, password: string, fullName: string): Observable<Boolean>{
+
+    const url = `${ this.baseUrl }/auth/register`;
+    const body = { email, password, fullName };
+
+    return this.http.post<LoginResponse>(url, body)
+    .pipe(
+      tap( ({ id_user,email,password,fullName,token }) => {
+        const user = {id_user,email,password,fullName,token};
+        this._currentUser.set( user);
+        this._authStatus.set( AuthStatus.authenticated);
+        localStorage.setItem('token', token);
+      }),
+
+      map( () => true ),
+
+      //errores
+      catchError( err => throwError( () => err.error.message))
+    )
+  }
+
+
   checkAuthStatus(): Observable<boolean>{
 
     const url = `${ this.baseUrl }/auth/check-token`;

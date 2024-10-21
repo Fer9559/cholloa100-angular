@@ -28,13 +28,19 @@ export class AppComponent {
 
   public authStatusChangedEffect = effect( () => {
 
+    const currentRoute = this.router.url;
+
     switch(this.authService.authStatus() ){
 
       case AuthStatus.checking:
         return;
 
       case AuthStatus.authenticated:
+
+        if (currentRoute === '/auth/login' || currentRoute === '/auth/register'){
         this.router.navigateByUrl('/dashboard');
+        }
+
         return;
 
       case AuthStatus.notAuthenticated:
