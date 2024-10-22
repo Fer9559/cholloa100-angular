@@ -34,13 +34,17 @@ export class CreateCholloComponent {
     // Convertir la cadena de imágenes en un array si las imágenes están separadas por comas
     const { titulo, precio, enlace, descripcion, images } = this.myForm.value;
 
-    const imagesArray: string[] = [];  // Creamos un array vacío para las imágenes
+    //Añadir imágenes al array imagesArray separadas por ","
+    /*const imagesArray: string[] = [];  // Creamos un array vacío para las imágenes
     const imageStrings = images.split(',');  // Primero dividimos la cadena usando la coma como delimitador
 
     for (let image of imageStrings) {
       const trimmedImage = image.trim();  // Quitamos los espacios en blanco
       imagesArray.push(trimmedImage);  // Añadimos cada imagen al array
-    }
+    }*/
+
+    //Añadir imágenes a array forma simplificada
+    const imagesArray = images.split(',').map((image: string) => image.trim());
 
     this.dashboardService.create(titulo, precio, enlace, descripcion, imagesArray)
       .subscribe({
