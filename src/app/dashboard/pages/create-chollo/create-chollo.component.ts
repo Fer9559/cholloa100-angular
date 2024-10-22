@@ -26,14 +26,32 @@ export class CreateCholloComponent {
   });
 
   create() {
+    if (this.myForm.invalid) {
+      Swal.fire('Error', 'Por favor, completa todos los campos requeridos correctamente.', 'error');
+      return;
+    }
+
+    // Convertir la cadena de imágenes en un array si las imágenes están separadas por comas
     const { titulo, precio, enlace, descripcion, images } = this.myForm.value;
 
-    this.dashboardService.create(titulo, precio, enlace, descripcion, images)
+    const imagesArray: string[] = [];  // Creamos un array vacío para las imágenes
+    const imageStrings = images.split(',');  // Primero dividimos la cadena usando la coma como delimitador
+
+    for (let image of imageStrings) {
+      const trimmedImage = image.trim();  // Quitamos los espacios en blanco
+      imagesArray.push(trimmedImage);  // Añadimos cada imagen al array
+    }
+
+    this.dashboardService.create(titulo, precio, enlace, descripcion, imagesArray)
       .subscribe({
-        next: () => this.router.navigateByUrl('/dashboard'),
+        next: () => {
+          Swal.fire('Éxito', 'Chollo creado exitosamente!', 'success'); // Asegúrate de que este mensaje sea un string
+          this.router.navigateByUrl('/dashboard');
+        },
         error: (message) => {
-          Swal.fire('Error', message, 'error')
+          // Asegúrate de que message sea un string
+          Swal.fire('Error', typeof message === 'string' ? message : 'Ha ocurrido un error al crear el chollo.', 'error');
         }
-      })
+      });
   }
 }

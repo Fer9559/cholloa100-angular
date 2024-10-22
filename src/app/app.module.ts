@@ -3,9 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-//import { AuthInterceptor } from './auth/services/auth.interceptor';
+import { authInterceptor } from './auth/services/auth.interceptor';
+
 
 
 
@@ -20,8 +21,13 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     HttpClientModule,
   ],
   providers: [
+    provideHttpClient(
+      withFetch(),
+        withInterceptors([
+            authInterceptor
+        ])
+    ),
     provideAnimationsAsync(),
-    //{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

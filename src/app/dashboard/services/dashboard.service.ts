@@ -18,14 +18,13 @@ private http = inject( HttpClient );
 constructor() {}
 
 
-create( titulo: string, precio: number, enlace: string, descripcion: string, images: string[]): Observable<Boolean>{
-
+create(titulo: string, precio: number, enlace: string, descripcion: string, images: string[]): Observable<Boolean> {
   const url = `${ this.baseUrl }/chollos/create`;
   const body = { titulo, precio, enlace, descripcion, images };
 
   return this.http.post<CreateChollo>(url, body).pipe(
-    map(response => !!response.id_chollo), // Retorna true si hay un id_chollo
-    catchError(err => throwError(() => new Error(err.error.message || 'Error creating chollo')))
+    map(response => !!response.id_chollo),
+    catchError(err => throwError(() => err.error.message || 'Error creando el chollo'))
   );
 }
 }
