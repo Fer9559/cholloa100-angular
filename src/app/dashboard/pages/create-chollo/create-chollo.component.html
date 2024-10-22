@@ -1,3 +1,80 @@
-<p>dashboard-create-chollo works!</p>
+<form
+  (ngSubmit)="create()"
+  [formGroup]="myForm"
+  class="login100-form"
+  autocomplete="off"
+>
+  <span class="login100-form-title p-b-49"> Nuevo chollo </span>
 
-<h1>Dashboard create-chollo</h1>
+  <div class="wrap-input100 m-b-23">
+    <span class="label-input100">Titulo</span>
+    <input
+      formControlName="titulo"
+      class="input100"
+      type="text"
+      placeholder="Ingrese el título del chollo"
+    />
+    <span class="focus-input100"></span>
+  </div>
+
+  <div class="wrap-input100">
+    <span class="label-input100">Precio</span>
+    <input
+      formControlName="precio"
+      class="input100"
+      type="text"
+      placeholder="Ingrese el precio del chollo"
+    />
+    <span class="focus-input100"></span>
+  </div>
+
+  <div class="wrap-input100">
+    <span class="label-input100">enlace</span>
+    <input
+      formControlName="enlace"
+      class="input100"
+      type="text"
+      placeholder="Ingrese el enlace del chollo"
+    />
+    <span class="focus-input100"></span>
+  </div>
+
+  <div class="wrap-input100">
+    <span class="label-input100">Descripcion</span>
+    <input
+      formControlName="descripcion"
+      class="input100"
+      type="text"
+      placeholder="Ingrese la descripcion del chollo"
+    />
+    <span class="focus-input100"></span>
+  </div>
+
+  <div class="wrap-input100">
+    <span class="label-input100">Imagenes</span>
+    <input
+      formControlName="images"
+      class="input100"
+      type="text"
+      placeholder="Ingrese la imagen"
+    />
+    <span class="focus-input100"></span>
+  </div>
+
+  <div class="text-right p-t-8 p-b-31"></div>
+
+  <div class="container-login100-form-btn">
+    <div class="wrap-login100-form-btn">
+      <div class="login100-form-bgbtn"></div>
+      <button
+        [disabled]="myForm.invalid"
+        class="login100-form-btn"
+        type="submit"
+      >
+          Crear chollo
+      </button>
+    </div>
+  </div>
+
+
+</form>

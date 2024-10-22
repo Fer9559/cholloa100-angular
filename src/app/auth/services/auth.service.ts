@@ -80,7 +80,7 @@ public authStatus = computed(() => this._authStatus());
     }
 
     const headers = new HttpHeaders()
-    .set('authorization', `Bearer ${token}`);
+    .set('Authorization', `Bearer ${token}`);
 
     return this.http.get<LoginResponse>(url, { headers })
     .pipe(
@@ -93,7 +93,7 @@ public authStatus = computed(() => this._authStatus());
         return true;
       }),
       catchError(() => {
-        //this._authStatus.set(AuthStatus.notAuthenticated);
+        this._authStatus.set(AuthStatus.notAuthenticated);
         return of(false);
       })
     );
