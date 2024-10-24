@@ -53,6 +53,12 @@ export class DashboardLayoutComponent {
     );
   }
 
+
+  onUpdateChollo(id_chollo: string) {
+    // Redirigir a la página de actualización con el ID del chollo
+    this.router.navigate(['/dashboard/update', id_chollo]);
+  }
+
   }
 
 //}

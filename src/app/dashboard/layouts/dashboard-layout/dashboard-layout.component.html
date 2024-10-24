@@ -28,6 +28,7 @@
       <div *ngFor="let image of chollo.images">
         <img [src]="image" alt="Imagen de {{ chollo.titulo }}" style="width: 100px; height: auto;" />
       </div>
+      <button (click)="onUpdateChollo(chollo.id_chollo)">Editar</button>
     </li>
   </ul>
 </div>
