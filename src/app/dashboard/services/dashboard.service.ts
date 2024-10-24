@@ -3,6 +3,7 @@ import { inject, Injectable } from "@angular/core";
 import { enviroment } from "../../../enviroments/enviroments";
 import { Observable, catchError, map, throwError } from "rxjs";
 import { CreateChollo } from "../interfaces/create-chollo.interface";
+import { ListChollos } from "../interfaces/list-chollo.interface";
 
 
 
@@ -27,4 +28,11 @@ create(titulo: string, precio: number, enlace: string, descripcion: string, imag
     catchError(err => throwError(() => err.error.message || 'Error creando el chollo'))
   );
 }
+
+
+getUserChollos(userId: string): Observable<any> {
+
+  return this.http.get<ListChollos>(`${this.baseUrl}/chollos/user-chollos/${userId}`);
+}
+
 }

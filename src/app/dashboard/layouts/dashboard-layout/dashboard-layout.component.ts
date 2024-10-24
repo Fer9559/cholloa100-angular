@@ -1,6 +1,9 @@
 import { Component, computed, inject } from '@angular/core';
 import { AuthService } from '../../../auth/services/auth.service';
 import { LoginResponse } from '../../../auth/interfaces';
+import { dashboardService } from '../../services/dashboard.service';
+import { Router } from '@angular/router';
+import { ListChollos } from '../../interfaces/list-chollo.interface';
 
 @Component({
   selector: 'app-dashboard-layout',
@@ -17,9 +20,39 @@ export class DashboardLayoutComponent {
     this.authService.logout();
   }
 
-  /*  get userName(): string {
-    const currentUser = this.user();
-    return currentUser.fullName;*/
+
+
+
+  chollos: any[] = []; // Array para almacenar los chollos
+  userId: string = ""; // ID del usuario
+
+  //constructor(private dashboardService: dashboardService, private authService: AuthService, private router: Router) {}
+  private dashboardService = inject(dashboardService);
+  //private authService = inject(dashboardService);
+  private router = inject(Router);
+
+  ngOnInit(): void {
+    this.userId = this.authService.getUserId(); // Obtener ID del usuario autenticado desde el servicio de autenticación
+    console.log('id de usurario logueado: ', this.userId);
+    this.getListUserChollos(this.userId);
+    //this.getUserChollos(this.userId);
+  }
+
+  // Método para obtener los chollos del usuario
+  getListUserChollos(userId: string): void {
+
+
+    this.dashboardService.getUserChollos(userId).subscribe(
+      (data) => {
+        this.chollos = data; // Almacenar los chollos en el array
+      },
+      (error) => {
+        console.error('Error al obtener los chollos:', error);
+        // Aquí puedes manejar errores, por ejemplo, mostrar un mensaje al usuario
+      }
+    );
+  }
+
   }
 
 //}
