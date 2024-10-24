@@ -1,20 +1,11 @@
 <p>dashboard-layout works!</p>
 
 <h1>Dashboard</h1>
-
 <hr>
 
 <p><a routerLink="/dashboard/create" class="txt2"> Crear chollo </a></p>
 
-<p><a routerLink="/dashboard/update" class="txt2"> Actualizar chollo </a></p>
-
-<p><a routerLink="/dashboard/delete" class="txt2"> Eliminar chollo </a></p>
-
-<!--<h3>Usuario {{  }}</h3> -->
-
-
-
-<button (click)="onLogout()">Cerrar sesion</button>
+<button (click)="onLogout()">Cerrar sesión</button>
 
 <hr>
 
@@ -28,7 +19,12 @@
       <div *ngFor="let image of chollo.images">
         <img [src]="image" alt="Imagen de {{ chollo.titulo }}" style="width: 100px; height: auto;" />
       </div>
+
+      <!-- Botón Editar -->
       <button (click)="onUpdateChollo(chollo.id_chollo)">Editar</button>
+
+      <!-- Botón Eliminar -->
+      <button (click)="onDeleteChollo(chollo.id_chollo)" class="btn btn-danger">Eliminar</button>
     </li>
   </ul>
 </div>

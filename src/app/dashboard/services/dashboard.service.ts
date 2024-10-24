@@ -47,7 +47,17 @@ update(id_chollo: string, titulo: string, precio: number, enlace: string, descri
     map(response => !!response.id_chollo),
     catchError(err => throwError(() => err.error.message || 'Error actualizando el chollo'))
   );
+
+
 }
 
+delete(id_chollo: string): Observable<any> {
+  const url = `${this.baseUrl}/chollos/delete-chollo/${id_chollo}`;
+
+  return this.http.delete(url).pipe(
+    catchError((err) => throwError(() => err.error.message || 'Error al eliminar el chollo'))
+  );
+
+}
 
 }
