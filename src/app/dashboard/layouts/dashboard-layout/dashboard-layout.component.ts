@@ -30,7 +30,12 @@ export class DashboardLayoutComponent {
   getListUserChollos(userId: string): void {
     this.dashboardService.getUserChollos(userId).subscribe(
       (data) => {
-        this.chollos = data; // Almacenar los chollos en el array
+        // Ordenar los chollos por la fecha más reciente (createdAt o updatedAt)
+        this.chollos = data.sort((a: any, b: any) => {
+          const dateA = new Date(a.updatedAt || a.createdAt).getTime();
+          const dateB = new Date(b.updatedAt || b.createdAt).getTime();
+          return dateB - dateA; // Orden descendente (más reciente primero)
+        });
       },
       (error) => {
         console.error('Error al obtener los chollos:', error);

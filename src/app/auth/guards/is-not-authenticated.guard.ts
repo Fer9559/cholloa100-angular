@@ -4,7 +4,6 @@ import { inject } from '@angular/core';
 import { AuthStatus } from '../interfaces';
 import { Router } from '@angular/router';
 
-
 export const isNotAuthenticatedGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
   const router = inject(Router);
@@ -15,5 +14,5 @@ export const isNotAuthenticatedGuard: CanActivateFn = (route, state) => {
   }
 
   return true;
-
 };
+

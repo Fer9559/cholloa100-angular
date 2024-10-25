@@ -26,7 +26,7 @@ getUserChollos(userId: string): Observable<any> {
 }
 
 getCholloById(id_chollo: string): Observable<UpdateChollo> {
-  return this.http.get<ListChollos>(`${this.baseUrl}/chollos/${id_chollo}`);
+  return this.http.get<ListChollos>(`${this.baseUrl}/chollos/filter-by-title/${id_chollo}`);
 }
 
 create(titulo: string, precio: number, enlace: string, descripcion: string, images: string[]): Observable<Boolean> {
@@ -50,6 +50,7 @@ update(id_chollo: string, titulo: string, precio: number, enlace: string, descri
 
 
 }
+
 
 delete(id_chollo: string): Observable<any> {
   const url = `${this.baseUrl}/chollos/delete-chollo/${id_chollo}`;

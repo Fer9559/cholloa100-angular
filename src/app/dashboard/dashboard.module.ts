@@ -5,7 +5,6 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardLayoutComponent } from './layouts/dashboard-layout/dashboard-layout.component';
 import { CreateCholloComponent } from './pages/create-chollo/create-chollo.component';
 import { UpdateCholloComponent } from './pages/update-chollo/update-chollo.component';
-import { DeleteCholloComponent } from './pages/delete-chollo/delete-chollo.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
@@ -15,7 +14,6 @@ import { RouterModule } from '@angular/router';
     DashboardLayoutComponent,
     CreateCholloComponent,
     UpdateCholloComponent,
-    DeleteCholloComponent
   ],
   imports: [
     CommonModule,
