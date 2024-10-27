@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { authInterceptor } from './auth/services/auth.interceptor';
+import { HeaderComponent } from './shared/header/header.component';
+import { FooterComponent } from './shared/footer/footer.component';
 
 
 
@@ -13,6 +15,8 @@ import { authInterceptor } from './auth/services/auth.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
+    HeaderComponent,
+    FooterComponent,
 
   ],
   imports: [

@@ -2,6 +2,7 @@ import { Component, computed, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../auth/services/auth.service';
 import { HomeServiceService } from '../../services/homeService.service';
+import { AuthStatus } from '../../../auth/interfaces/auth-status.enum';
 
 @Component({
   selector: 'app-home',
@@ -64,6 +65,21 @@ export class HomeComponent {
   login() {
     this.router.navigate(['./auth']);
   }
+
+/*
+  // Computed property para verificar si el usuario está autenticado
+  public isAuthenticated = computed<boolean>(() => {
+    return this.authService.authStatus() === AuthStatus.authenticated;
+  });
+
+  // Método para manejar la navegación según el estado de autenticación
+  navigateBasedOnAuthStatus() {
+    if (this.isAuthenticated()) {
+      this.router.navigateByUrl('/dashboard');
+    } else {
+      this.router.navigateByUrl('/auth/login');
+    }
+  }*/
 
   // Cierra la sesión
   onLogout() {
